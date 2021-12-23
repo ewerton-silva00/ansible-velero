@@ -36,8 +36,7 @@ metrics:
 configuration:
   provider: aws
   backupStorageLocation:
-    name: grafana
-    bucket: velero
+    bucket: {{ velero_bucket_name }}
     config:
       region: minio
       s3ForcePathStyle: true
@@ -46,7 +45,7 @@ configuration:
 credentials:
   useSecret: true
   secretContents:
-    minio: |-
+    cloud: |-
       [default]
       aws_access_key_id = {{ velero_aws_access_key }}
       aws_secret_access_key = {{ velero_aws_secret_key }}

@@ -16,6 +16,8 @@ velero_aws_access_key: AKIAIOSFODNN7EXAMPLE
 
 velero_aws_secret_key: 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
 
+velero_bucket_name: velero
+
 # Which namespaces will be backed up.
 velero_backup_namespaces:
   - rocketchat
