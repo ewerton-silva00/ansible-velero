@@ -14,22 +14,22 @@ This project is a [`Ansible Role`](https://docs.ansible.com/ansible/latest/user_
 
 Clone this repository.
 ```bash
-git clone https://github.com/ewerton-silva00/velero-ansible-role
+git clone https://github.com/ewerton-silva00/ansible-velero
 ```
 
 Initialize a [`Virtual Environment`](https://docs.python.org/3/library/venv.html).
 ```bash
-python3 -m venv velero-ansible-role
+python3 -m venv ansible-velero
 ```
 
 Activate the virtual environment.
 ```bash
-source velero-ansible-role/bin/activate
+source ansible-velero/bin/activate
 ```
 
-Access the `velero-ansible-role` directory and install dependencies.
+Access the `ansible-velero` directory and install dependencies.
 ```bash
-cd velero-ansible-role
+cd ansible-velero
 sudo pip3 install -r requirements.txt
 ```
 Make sure that accessing the Kubernetes cluster via kubectl is OK.
