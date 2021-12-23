@@ -8,6 +8,7 @@ This project is a [`Ansible Role`](https://docs.ansible.com/ansible/latest/user_
 - The [`kubectl`](https://kubernetes.io/docs/tasks/tools/) binary installed.
 - The [`Helm`](https://helm.sh/) binary installed.
 - [`Python3`](https://www.python.org/) installed.
+- [`Pip`](https://pypi.org/project/pip/) installed.
 
 ## How to use
 
