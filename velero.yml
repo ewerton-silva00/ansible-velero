@@ -1,4 +1,7 @@
 ---
 - hosts: localhost
+  any_errors_fatal: true
   roles:
-    - velero
+    - role: velero
+      tags:
+        - velero

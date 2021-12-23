@@ -3,7 +3,7 @@
 - name: Velero | Deploy | Add VMware Tanzu helm repository
   kubernetes.core.helm_repository:
     name: vmware-tanzu
-    repo_url: https://vmware-tanzu.github.io/helm-charts
+    repo_url: "https://vmware-tanzu.github.io/helm-charts"
 
 - name: Velero | Deploy | Deploy velero chart with values loaded from template
   kubernetes.core.helm:
