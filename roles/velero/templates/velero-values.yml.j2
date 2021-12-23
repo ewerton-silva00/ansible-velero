@@ -1,0 +1,76 @@
+image:
+  repository: velero/velero
+  tag: v{{ velero_version }}
+  pullPolicy: IfNotPresent
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 128Mi
+  limits:
+    cpu: 1000m
+    memory: 512Mi
+
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.3.0
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+
+metrics:
+  enabled: true
+  scrapeInterval: 30s
+  scrapeTimeout: 10s
+
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8085"
+    prometheus.io/path: "/metrics"
+
+  serviceMonitor:
+    enabled: false
+    additionalLabels: {}
+
+configuration:
+  provider: aws
+  backupStorageLocation:
+    name: grafana
+    bucket: velero
+    config:
+      region: minio
+      s3ForcePathStyle: true
+      s3Url: {{ velero_storage_s3url }}
+
+credentials:
+  useSecret: true
+  secretContents:
+    minio: |-
+      [default]
+      aws_access_key_id = {{ velero_aws_access_key }}
+      aws_secret_access_key = {{ velero_aws_secret_key }}
+
+defaultVolumesToRestic: true
+snapshotsEnabled: false
+
+# Whether to deploy the restic daemonset.
+deployRestic: true
+restic:
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+# Backup schedules to create.
+# schedules:
+#   grafana:
+#     disabled: false
+#     schedule: "0 */1 * * *"
+#     template:
+#       ttl: "24h"
+#       includedNamespaces:
+#       - grafana
