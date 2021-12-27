@@ -20,8 +20,12 @@ velero_bucket_name: velero
 
 # Which namespaces will be backed up.
 velero_backup_namespaces:
-  - rocketchat
-  - ingress-nginx
+  - namespace:  rocketchat
+    cron_expression: "0 */1 * * *"
+    ttl: "24h"
+  - namespace: ingress-nginx
+    cron_expression: "0 */1 * * *"
+    ttl: "24h"
 
 # Whether active the monitoring. Must have Prometheus Operator installed and working.
 velero_prometheus_monitoring: true

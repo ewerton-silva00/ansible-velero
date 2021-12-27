@@ -65,11 +65,13 @@ restic:
       memory: 512Mi
 
 # Backup schedules to create.
-# schedules:
-#   grafana:
-#     disabled: false
-#     schedule: "0 */1 * * *"
-#     template:
-#       ttl: "24h"
-#       includedNamespaces:
-#       - grafana
+{% for ns in velero_backup_namespaces %}
+schedules:
+  {{ ns.namespace }}:
+    disabled: false
+    schedule: {{ ns.cron_expression }}
+    template:
+      ttl: {{ ns.ttl }}
+      includedNamespaces:
+      - {{ ns.namespace }}
+{% endfor %}
