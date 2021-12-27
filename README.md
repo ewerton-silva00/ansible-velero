@@ -40,9 +40,7 @@ kubectl cluster-info
 Execute the Velero Role.
 ```bash
 ansible-playbook \
-  --ask-pass \
-  --ask-become-pass \
   --inventory inventories/hosts.yml \
   velero.yml
 ```
-> _Note_: if the variable `velero_binary_install` is `false` you don't nedd to pass `--ask-pass` and `--ask-become-pass`.
+> _Note_: if the variable `velero_binary_install` is `true` you need to pass `--ask-pass` and `--ask-become-pass`, because require `sudo` privilege.
