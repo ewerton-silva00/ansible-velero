@@ -3,5 +3,6 @@ bin/
 include/
 lib/
 README/
+share/
 lib64
 pyvenv.cfg

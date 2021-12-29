@@ -1,8 +1,3 @@
-image:
-  repository: velero/velero
-  tag: v{{ velero_version }}
-  pullPolicy: IfNotPresent
-
 resources:
   requests:
     cpu: 500m
@@ -20,7 +15,7 @@ initContainers:
         name: plugins
 
 metrics:
-  enabled: true
+  enabled: {{ velero_prometheus_monitoring }}
   scrapeInterval: 30s
   scrapeTimeout: 10s
 
@@ -38,9 +33,10 @@ configuration:
   backupStorageLocation:
     bucket: {{ velero_bucket_name }}
     config:
-      region: minio
+      region: {{ velero_storage_region }}
       s3ForcePathStyle: true
       s3Url: {{ velero_storage_s3url }}
+      publicUrl: {{ velero_storage_public_s3url }}
 
 credentials:
   useSecret: true
